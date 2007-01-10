@@ -66,6 +66,7 @@ OR PERFORMANCE OF THIS SOFTWARE.
 #endif
 #include <X11/Xos.h>
 #include <stdio.h>
+#include <time.h>
 #include "misc.h"
 #include <X11/X.h>
 #include <X11/Xtrans/Xtrans.h>
