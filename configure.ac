@@ -1114,12 +1114,15 @@ if test "x$XORG" = xyes; then
 	driverdir="$moduledir/drivers"
 	AC_SUBST([moduledir])
 	AC_SUBST([driverdir])
-	sdkdir="$includedir/xorg"
 	extdir="$includedir/X11/extensions"
-	AC_SUBST([sdkdir])
 	AC_SUBST([extdir])
 	AC_SUBST([logdir])
 fi
+# we need those two or the include files cannot be installed
+# if --disable-xorg is provided
+sdkdir="$includedir/xorg"
+AC_SUBST([sdkdir])
+
 AM_CONDITIONAL([XORG], [test "x$XORG" = xyes])
 AM_CONDITIONAL([XORG_BUS_LINUXPCI], [test "x$xorg_bus_linuxpci" = xyes])
 AM_CONDITIONAL([XORG_BUS_FREEBSDPCI], [test "x$xorg_bus_freebsdpci" = xyes])
@@ -1334,7 +1337,9 @@ AC_SUBST([BUILD_DATE])
 DIX_CFLAGS="-DHAVE_DIX_CONFIG_H"
 AC_SUBST([DIX_CFLAGS])
 
-AC_SUBST([libdir exec_prefix prefix])
+AC_SUBST([libdir])
+AC_SUBST([exec_prefix])
+AC_SUBST([prefix])
 
 # Man page sections - used in config utils & generating man pages
 XORG_MANPAGE_SECTIONS
